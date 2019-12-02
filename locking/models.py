@@ -79,7 +79,7 @@ class LockingManager(QueryMixin, models.Manager):
 
 
 class Lock(models.Model):
-    id = models.CharField(max_length=15, primary_key=True)
+    id = models.CharField(max_length=65, primary_key=True)
     locked_by = models.ForeignKey(getattr(settings, 'AUTH_USER_MODEL', 'auth.User'),
                                   on_delete=models.CASCADE)
     date_expires = models.DateTimeField()
