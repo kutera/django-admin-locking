@@ -105,7 +105,7 @@ class LockingAdminMixin(object):
         urls = super(LockingAdminMixin, self).get_urls()
         locking_urls = [
             # URL For Locking admin form JavaScript
-            url(r'^locking_form.%s_%s_(?P<object_id>[0-9]+).js$' % self._model_info,
+            url(r'^locking_form.%s_%s_(?P<object_id>[0-9a-f-]+).js$' % self._model_info,
                 self.admin_site.admin_view(self.locking_admin_form_js),
                 name=self.locking_admin_form_js_url_name),
 
@@ -159,7 +159,7 @@ class LockingAdminMixin(object):
 
     def locking_admin_form_js_url(self, object_id):
         """Get the URL for the locking admin form js for a given object_id on this admin"""
-        return reverse('admin:' + self.locking_admin_form_js_url_name,
+        return reverse(self.admin_site.name + ':' + self.locking_admin_form_js_url_name,
                        kwargs={'object_id': object_id})
 
     def locking_admin_changelist_js(self, request):
@@ -170,7 +170,7 @@ class LockingAdminMixin(object):
 
     def locking_admin_changelist_js_url(self):
         """Get the URL for the locking admin form js for a given object_id on this admin"""
-        return reverse('admin:' + self.locking_admin_changelist_js_url_name)
+        return reverse(self.admin_site.name + ':' + self.locking_admin_changelist_js_url_name)
 
     def render_change_form(self, request, context, add=False, obj=None, **kwargs):
         """If editing an existing object, add form locking media to the media context"""

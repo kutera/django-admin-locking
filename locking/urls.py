@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'api/lock/(?P<app>[\w-]+)/(?P<model>[\w-]+)/$',
         LockAPIView.as_view(), name='locking-api'),
 
-    url(r'api/lock/(?P<app>[\w-]+)/(?P<model>[\w-]+)/(?P<object_id>\d+)/$',
+    url(r'api/lock/(?P<app>[\w-]+)/(?P<model>[\w-]+)/(?P<object_id>[0-9a-f-]+)/$',
         LockAPIView.as_view(), name='locking-api'),
 ]
