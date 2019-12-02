@@ -84,7 +84,7 @@ class Lock(models.Model):
                                   on_delete=models.CASCADE)
     date_expires = models.DateTimeField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.CharField(max_length=50, verbose_name=_('Key of locked model'))
+    object_id = models.CharField(max_length=50, verbose_name='Key of locked model')
     content_object = GenericForeignKey('content_type', 'object_id')
 
     objects = LockingManager()
